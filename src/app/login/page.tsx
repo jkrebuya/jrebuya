@@ -18,7 +18,7 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
 
-    const res = await fetch(`${API_BASE}/login`, {
+    const res = await fetch(`${API_BASE}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
@@ -36,21 +36,21 @@ export default function LoginPage() {
 
   return (
     <div
-      className="flex items-center justify-center h-screen"
+      className="flex items-center justify-center h-screen pb-24 bg-cover bg-center bg-no-repeat"
       style={{
-        background: "linear-gradient(135deg, #f5e6d3 0%, #f2d7b6 100%)",
+        backgroundImage: "url('/bg8.jpg')",
       }}
     >
-      <Card className="w-full max-w-sm p-6 shadow-xl bg-white/90 backdrop-blur-md rounded-2xl">
+      <Card className="w-full max-w-sm p-8 shadow-2xl bg-white rounded-2xl">
         <CardContent>
-          <h1 className="text-2xl font-bold mb-4 text-brown-800">Login</h1>
+          <h1 className="text-3xl font-bold mb-6 text-gray-800">Login</h1>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <Input
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="bg-white/80"
+              className="bg-white border border-gray-300"
             />
 
             <Input
@@ -58,24 +58,22 @@ export default function LoginPage() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-white/80"
+              className="bg-white border border-gray-300"
             />
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
-            {/* Login Button */}
             <Button
-              className="w-full bg-[#8b5e34] hover:bg-[#6f4829] text-white"
+              className="w-full bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-3 text-md"
               type="submit"
             >
               Login
             </Button>
           </form>
 
-          {/* Create Account Link */}
           <Button
             variant="link"
-            className="mt-3 w-full text-[#8b5e34] font-medium"
+            className="mt-4 w-full text-gray-700 font-medium"
             onClick={() => router.push('/register')}
           >
             Create an account

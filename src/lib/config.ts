@@ -1,3 +1,3 @@
-// export const API_BASE ='https://jana-zhuw.onrender.com/auth';
+// export const API_BASE ='https://jana-zhuw.onrender.com';
 
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;

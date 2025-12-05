@@ -18,7 +18,7 @@ export default function RegisterPage() {
     e.preventDefault();
     setError('');
 
-    const res = await fetch(`${API_BASE}/register`, {
+    const res = await fetch(`${API_BASE}/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, contact_number, password }),
@@ -35,28 +35,29 @@ export default function RegisterPage() {
 
   return (
     <div
-      className="flex items-center justify-center h-screen"
+      className="flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat"
       style={{
-        background: "linear-gradient(135deg, #f5e6d3 0%, #f2d7b6 100%)",
+        backgroundImage: "url('/bg8.jpg')",
       }}
     >
-      <Card className="w-full max-w-sm p-6 shadow-xl bg-white/90 backdrop-blur-md rounded-2xl">
+      <Card className="w-full max-w-sm p-8 shadow-2xl bg-white rounded-2xl">
         <CardContent>
-          <h1 className="text-2xl font-bold mb-4 text-brown-800">Login</h1>
+          <h1 className="text-3xl font-bold mb-6 text-gray-800">Register</h1>
 
           <form onSubmit={handleRegister} className="space-y-4">
             <Input
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="bg-white/80"
+              className="bg-white border border-gray-300"
             />
 
             <Input
-              type="Contact number"
-              placeholder="contact_number"
-              value={password}
+              type="text"
+              placeholder="Contact Number"
+              value={contact_number}
               onChange={(e) => setContact_number(e.target.value)}
+              className="bg-white border border-gray-300"
             />
 
             <Input
@@ -64,19 +65,22 @@ export default function RegisterPage() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-white/80"
+              className="bg-white border border-gray-300"
             />
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
-            <Button className="w-full" type="submit">
+            <Button
+              className="w-full bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-3 text-md"
+              type="submit"
+            >
               Register
             </Button>
           </form>
 
           <Button
             variant="link"
-            className="mt-2 w-full"
+            className="mt-4 w-full text-gray-700 font-medium"
             onClick={() => router.push('/login')}
           >
             Back to login
